@@ -1,0 +1,68 @@
+{% extends 'account/base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1>Profile</h1>
+    <p>Full name: {{ user.first_name }}  {{ user.last_name }}</p>
+
+    {% if user.bio != None %}
+    <p>Bio: {{ user.bio }}</p>
+    {% else %}
+    <p>No bio</p>
+    {% endif %}
+
+    <a href='{% url 'account:Unfollow' name=user.username %}'>Unfollow {{user.username}}</a>
+
+    <p><a href="{{ user.link1 }}">{{ user.link1 }}</a></p>
+    <p><a href="{{ user.link2 }}">{{ user.link2 }}</a></p>
+
+    {% if user.location != None %}
+    <p>Location: {{ user.location }}</p>
+    {% else %}
+    {% endif %}
+
+    {% if user.profile.pic %}
+    <img src="{{ user.profile.pic.url }}" width="240">
+    {% endif %}
+
+</div>
+<br>
+<div class='container'>
+<p>{{user.username}}'s content</p>
+  <ul>
+      {% for iii in user.content_set.all %}
+      <li><a href="{{ iii.get_absolute_url }}">{{ iii.caption }}</a></li>
+      {% empty %}
+      <li>No Contents</li>
+      {% endfor %}
+  </ul>
+
+<p>follow request</p>
+  <ul>
+      {% for iiii in user.requested.all %}
+      <li><a href="{{ iiii.get_absolute_url }}">{{ iiii.userFrom.username }}</a></li>
+      {% empty %}
+      <li>No Contents</li>
+      {% endfor %}
+  </ul>
+
+<p>Following</p>
+  <ul>
+      {% for i in user.profile.following.all %}
+      <li><a href="{{ i.get_absolute_url }}">{{ i.username }}</a></li>
+      {% empty %}
+      <li>follows no one</li>
+      {% endfor %}
+  </ul>
+<br>
+
+<p>Followers</p>
+  <ul>
+      {% for ii in user.followed_by.all %}
+      <li><a href="{{ ii.get_absolute_url }}">{{ ii.user.username }}</a></li>
+      {% empty %}
+      <li>No one follows this person</li>
+      {% endfor %}
+  </ul>
+</div>
+{% endblock %}

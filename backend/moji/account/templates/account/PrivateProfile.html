@@ -1,0 +1,12 @@
+{% extends 'account/base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1>Profile</h1>
+    <p>{{ user.username }} is private</p>
+
+    <p>Make a request to follow</p>
+    <a href='{% url 'account:makeAcceptance' name=user.username %}'>send a now</a>
+
+</div>
+{% endblock %}

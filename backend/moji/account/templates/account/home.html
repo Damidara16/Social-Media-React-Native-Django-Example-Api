@@ -1,0 +1,81 @@
+{% extends 'account/base.html'%}
+
+
+{% block body %}
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-3 well">
+      <div class="well">
+        <p>{{user.username}}</p>
+        {% if user.profile.pic %}
+        <img src="{{user.profile.pic.url}}" class="img-circle" height="65" width="65" alt="Avatar">
+        {%endif%}
+      </div>
+      <div class="well">
+        <p>Interests</p>
+        <p>
+          <span class="label label-default">News</span>
+          <span class="label label-primary">Music</span>
+          <span class="label label-success">Toys</span>
+          <span class="label label-info">Football</span>
+          <span class="label label-warning">Gaming</span>
+          <span class="label label-danger">Friends</span>
+        </p>
+      </div>
+      <div class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+        <p><strong>Ey!</strong></p>
+        People are looking at your profile. Find out who.
+      </div>
+      <p><a href="{{user.profile.link1}}">{{user.profile.link1}}</a></p>
+      <p><a href="{{user.profile.link2}}">{{user.profile.link2}}</a></p>
+      <p><a href="{% url 'account:ProfileView' name=request.user.username %}">view profile</a></p>
+    </div>
+    <div class="col-sm-7">
+
+      {% for i in queryset_list %}
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+           <p>{{i.user.username}}</p>
+           {% if i.user.profile.pic %}
+           <img src="{{i.user.profile.pic.url}}" class="img-circle" height="55" width="55" alt="Avatar">
+           {%else%}
+           {%endif%}
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="well">
+            <p>{{i.typecontent}}</p>
+            {% if i.file %}
+            <img src="{{i.file.url}}" class="img-thumbnail">
+            {% else %}
+            {% endif %}
+            <p>{{i.caption}}</p>
+            <p>{{i.date}}</p>
+            <a href='{{ i.get_absolute_url }}'>View Details</a>
+
+          </div>
+          {% empty %}
+          <p>No following</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-sm-2 well">
+
+      {% for i in user.profile.following.all %}
+      <div class="well">
+        <a href='{{ i.get_absolute_url }}'>{{i.username}}</a>
+        <p>Follwers: {{i.followed_by.all.count}} Follwing: {{i.profile.following.all.count}}</p>
+        <p>{{i.first_name}} {{i.last_name}}</p>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}

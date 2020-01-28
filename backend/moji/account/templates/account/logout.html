@@ -1,0 +1,10 @@
+{% extends 'account/base.html' %}
+
+{% block body %}
+
+<div class='container'>
+
+<h2>your logged out</h2>
+<a href='{% url 'account:login' %}'>Sign Back In</a>
+</div>
+{% endblock %}

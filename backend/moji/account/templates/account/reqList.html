@@ -1,0 +1,17 @@
+{% extends 'account/base.html' %}
+
+{% block body %}
+
+<div class='container'>
+<h2>Follow Requests</h2>
+  <ul>
+      {% for x in user.requested.all %}
+      <li><a href="{{ x.get_absolute_url }}">{{ x.userFrom }}</a></li>
+      <br>
+      {% empty %}
+      <li>No Requests</li>
+      {% endfor %}
+  </ul>
+
+</div>
+{% endblock %}

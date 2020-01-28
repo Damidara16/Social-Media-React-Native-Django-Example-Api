@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Set black background color, white text and some padding */
+    footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'home:home' %}">FanMoji</a>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="{% url 'content:CreatePost' %}">Create Post</a></li>
+        <li class="active"><a href="{% url 'content:CreateVideo' %}">Create Video</a></li>
+        <li class="active"><a href="{% url 'content:CreateTweet' %}">Create Tweet</a></li>
+
+
+        <li><a href="#">Discover</a></li>
+        <li><a href="{% url 'account:listAcceptance' %}">Requests</a></li>
+
+      </ul>
+      <!--can put a url in the action, which can be directed at a serach view-->
+      <form method='GET' action="{% url 'home:search' %}" class="navbar-form navbar-right" role="search" >
+        <div class="form-group input-group">
+          <input type="text" value='{{request.GET.q}}' class="form-control" name='q' placeholder="Search.."/>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit" value='Search'>
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'account:ProfileView' name=request.user.username %}"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+        <li><a href="{% url 'account:logout' %}">Logout</a></li>
+
+      </ul>
+    </div>
+  </div>
+  {% else %}
+  <a href='{% url 'account:login' %}'>Login</a>
+  <a href='{% url 'account:Register' %}'>Sign Up</a>
+
+  {% endif %}
+</nav>
+
+{% block body %}
+{% endblock %}
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+
+</body>
+</html>

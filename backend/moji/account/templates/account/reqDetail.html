@@ -1,0 +1,13 @@
+{% extends 'account/base.html' %}
+
+{% block body %}
+
+<div class='container'>
+<h2>Request</h2>
+<p>{{req.userFrom}} wants to follow you</p>
+<a href='{% url 'account:editAcceptance' name=req.userTo.username %}'>yes</a>
+<a href='{% url 'account:deleteAcceptance' name=req.userTo.username %}'>no</a>
+
+
+</div>
+{% endblock %}

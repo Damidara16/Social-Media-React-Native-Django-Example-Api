@@ -1,0 +1,17 @@
+certifi==2019.9.11
+chardet==3.0.4
+colorama==0.4.1
+dj-database-url==0.5.0
+Django==1.11.23
+django-cors-headers==3.2.0
+djangorestframework==3.10.3
+gunicorn==20.0.4
+httpie==1.0.2
+idna==2.8
+psycopg2==2.8.4
+Pygments==2.4.2
+pytz==2019.3
+requests==2.22.0
+six==1.13.0
+stripe==2.39.0
+urllib3==1.25.6
