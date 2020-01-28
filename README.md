@@ -7,5 +7,5 @@ follow request for private following, and easy implemtation of paywall for a sub
 content share - allows user share content made by user to other users feeds, content replication.
 
 
-![](https://imgur.com/gYUAWQA)
+![](https://imgur.com/gYUAWQA.jpg)
 ![](https://imgur.com/1jjeBo6.jpg)
