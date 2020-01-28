@@ -5,5 +5,4 @@ With many other additional features in the backend, such as content creation, co
 follow request for private following, and easy implemtation of paywall for a subscription type social media.
 
 content share - allows user share content made by user to other users feeds, content replication.
-![](https://imgur.com/vvZ0VS5.jpg)
 ![](https://imgur.com/Umg3opo.jpg)
